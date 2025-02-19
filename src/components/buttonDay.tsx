@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
   footerSpace: {
     height: Dimensions.get('window').width / 8,
   },
-  // Estilo para los espacios vacíos
+  // Estilo para los espacios vacíos 
   emptySpace: {
     width: Dimensions.get('window').width / 8,
     height: Dimensions.get('window').width / 8,
