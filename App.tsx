@@ -1,14 +1,21 @@
-// App.tsx
 import React from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import ListaBotones from './src/components/buttonDay';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import HomeScreen from './src/screens/HomeScreen';
+//import MovieScreen from './src/screens/formularioTarea';
 
+const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <ListaBotones /> {/* Aquí se renderiza el componente */}
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
