@@ -1,29 +1,26 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import ListaBotones from './src/components/buttonDay';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from './src/screens/HomeScreen';
-//import MovieScreen from './src/screens/formularioTarea';
+import FormularioTarea from './src/screens/formularioTarea';
+import { createStackNavigator } from '@react-navigation/stack';
+import Calendario from './src/components/buttonDay';
 
-const Stack = createNativeStackNavigator();
+export type RootStackParamList = {
+  Calendario: undefined;
+  FormularioTarea: { day: number };
+};
 
-const App = () => {
+const Stack = createStackNavigator<RootStackParamList>();
+
+export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        
+      <Stack.Navigator initialRouteName="Calendario">
+        <Stack.Screen name="Calendario" component={Calendario} />
+        <Stack.Screen name="FormularioTarea" component={FormularioTarea} />
       </Stack.Navigator>
     </NavigationContainer>
   );
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-});
-
-export default App;
+}

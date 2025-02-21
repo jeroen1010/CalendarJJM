@@ -1,5 +1,9 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { FlatList, StyleSheet, View, Text, TouchableOpacity, Alert, Dimensions } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../../App';
+
 
 // Obtiene la cantidad de días en un mes considerando los años bisiestos (Gracias a la clase react "Date")
 const getDaysInMonth = (month: number, year: number) => {
@@ -27,14 +31,19 @@ const screenWidth = Dimensions.get('window').width;
 const dayWidth = screenWidth / weekDays.length;
 
 // Componente ButtonDay reutilizable
-const ButtonDay = ({ dayNumber }: { dayNumber: number }) => (
-  <TouchableOpacity
-    style={styles.button}
-    onPress={() => Alert.alert(`Has pulsado el día ${dayNumber}`)}
-  >
-    <Text style={styles.buttonText}>{dayNumber}</Text>
-  </TouchableOpacity>
-);
+const ButtonDay = ({ dayNumber }: { dayNumber: number }) => {
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+
+  return (
+    <TouchableOpacity
+      style={styles.button}
+      onPress={() => navigation.navigate('FormularioTarea', { day: dayNumber })}
+    >
+      <Text style={styles.buttonText}>{dayNumber}</Text>
+    </TouchableOpacity>
+  );
+};
+
 
 /* Componente principal, para obtener la fecha actual necesito estados.
 Creo una variable currentDate con un objeto Date, guardo el mes y el año */
